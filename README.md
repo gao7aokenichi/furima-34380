@@ -2,16 +2,16 @@
 
 ## users テーブル
 
-| Column         | Type   | Options     |
-| -------------- | ------ | ----------- |
-| name           | string | null: false |
-| email          | string | null: false |
-| password       | string | null: false |
-| last_name      | string | null: false |
-| first_name     | string | null: false |
-| last_name_kana | string | null: false |
-| first_name_kana| string | null: false |
-| birthday       | string | null: false |
+| Column             | Type   | Options     |
+| ------------------ | ------ | ----------- |
+| name               | string | null: false |
+| email              | string | null: false, unique: true| 
+| encrypted_password | string | null: false |
+| last_name          | string | null: false |
+| first_name         | string | null: false |
+| last_name_kana     | string | null: false |
+| first_name_kana    | string | null: false |
+| birthday           | date   | null: false |
 
 ### Association
 
@@ -20,17 +20,17 @@
 
 ## items テーブル
 
-| Column   | Type     | Options     |
-| -------- | -------- | ----------- |
-| user_id  |references|foreign_key: true|
-| item_name| text     | null: false |
-| text     | text     | null: false |
-| category | integer  | null: false |
-| status   | integer  | null: false |
-| charge   | integer  | null: false |
-| area     | integer  | null: false |
-| day      | integer  | null: false |
-| price    | string   | null: false |
+| Column      | Type     | Options     |
+| ----------- | -------- | ----------- |
+| user        |references|foreign_key: true|
+| name        | string   | null: false |
+| text        | text     | null: false |
+| category_id | integer  | null: false |
+| status_id   | integer  | null: false |
+| charge_id   | integer  | null: false |
+| area_id     | integer  | null: false |
+| day_id      | integer  | null: false |
+| price       | date     | null: false |
 
 ### Association
 
@@ -40,8 +40,8 @@
 ## order テーブル
 | Column  | Type      | Options     |
 | ------- | --------- | ----------- |
-| user_id | references|foreign_key: true|
-| item_id | references|foreign_key: true|
+| user    | references|foreign_key: true|
+| item    | references|foreign_key: true|
 
 ### Association
 
@@ -54,12 +54,12 @@
 | Column          | Type     | Options     |
 | --------------- | -------- | ----------- |
 | postal_code     | string   | null: false |
-| prefectures     | integer  | null: false |
+| prefectures_id  | integer  | null: false |
 | municipality    | string   | null: false |
 | address         | string   | null: false |
 | building_name   | string   |
 | phone_number    | string   | null: false |
-| order_id        |references|foreign_key: true|
+| order           |references|foreign_key: true|
 
 ### Association
 
