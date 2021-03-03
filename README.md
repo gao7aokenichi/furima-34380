@@ -30,7 +30,7 @@
 | charge_id   | integer  | null: false |
 | area_id     | integer  | null: false |
 | day_id      | integer  | null: false |
-| price       | date     | null: false |
+| price       | integer  | null: false |
 
 ### Association
 
