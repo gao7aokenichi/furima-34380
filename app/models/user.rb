@@ -3,14 +3,14 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  #  それぞれのカラムが空では保存できない」というバリデーションを設定する
-  validates :name, presence: true
-  validates :last_name, presence: true
-  validates :first_name, presence: true
-  validates :last_name_kana, presence: true
-  validates :first_name_kana, presence: true
-  validates :birthday, presence: true
-            
+ with_options presence: true do
+  validates :name
+  validates :last_name
+  validates :first_name
+  validates :last_name_kana
+  validates :first_name_kana
+  validates :birthday
+ end           
   # has_many :items
   # has_many :orders
 

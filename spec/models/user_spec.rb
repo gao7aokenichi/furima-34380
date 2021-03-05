@@ -34,10 +34,22 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("Last name can't be blank")
     end
 
+    it 'last_nameは漢字・平仮名・カタカナ以外では登録できないこと' do
+      @user.last_name = '1a'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Last name is invalid")
+    end
+
     it 'first_nameが空では登録できないこと' do
       @user.first_name = ''
       @user.valid?
       expect(@user.errors.full_messages).to include("First name can't be blank")
+    end
+
+    it 'first_nameは漢字・平仮名・カタカナ以外では登録できないこと' do
+      @user.first_name = '1a'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("First name is invalid")
     end
 
     it 'last_name_kanaが空では登録できないこと' do
@@ -46,10 +58,22 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("Last name kana can't be blank")
     end
 
+    it 'last_name_kanaは全角カタカナ以外では登録できないこと' do
+      @user.last_name_kana = '1aあゝ'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Last name kana is invalid")
+    end
+
     it 'first_name_kanaが空では登録できないこと' do
       @user.first_name_kana = ''
       @user.valid?
       expect(@user.errors.full_messages).to include("First name kana can't be blank")
+    end
+
+    it 'first_name_kanaは全角カタカナ以外では登録できないこと' do
+      @user.first_name_kana = '1aあゝ'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("First name kana is invalid")
     end
 
     it 'birthdayが空では登録できないこと' do
@@ -68,6 +92,13 @@ RSpec.describe User, type: :model do
     it 'passwordが5文字以下であれば登録できないこと' do
       @user.password = '12345'
       @user.password_confirmation = '12345'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
+    end
+
+    it 'passwordは全角では登録できないこと' do
+      @user.password = 'ぜんかく'
+      @user.password_confirmation = 'ぜんかく'
       @user.valid?
       expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
     end
