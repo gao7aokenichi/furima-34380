@@ -3,9 +3,9 @@ class ItemsController < ApplicationController
       # @items = Item.all
   end
 
-  # def new
-  #   @item = Item.new
-  # end
+  def new
+    # @item = Item.new
+  end
 
   # def create
   #   item.create(item_params)
