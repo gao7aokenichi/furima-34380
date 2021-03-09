@@ -7,5 +7,4 @@ class Day < ActiveHash::Base
   ]
 
   include ActiveHash::Associations
-
 end
