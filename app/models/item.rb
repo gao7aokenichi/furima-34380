@@ -1,8 +1,14 @@
 class Item < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
+
   # has_one : order
   belongs_to :user
   has_one_attached :image
-
+  belongs_to :area
+  belongs_to :charge
+  belongs_to :status
+  belongs_to :category
+  belongs_to :day
   with_options presence: true do
     validates :image
     validates :name, length: { maximum: 40 }
