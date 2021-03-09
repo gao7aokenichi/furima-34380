@@ -6,5 +6,4 @@ class Charge < ActiveHash::Base
   ]
 
   include ActiveHash::Associations
-
 end

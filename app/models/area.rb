@@ -51,5 +51,4 @@ class Area < ActiveHash::Base
   ]
 
   include ActiveHash::Associations
-
 end
