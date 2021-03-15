@@ -61,14 +61,13 @@ RSpec.describe ItemAddress, type: :model do
       it 'phone_numberは12桁以上では登録できないこと' do
         @item_address.phone_number = '123456789012'
         @item_address.valid?
-        expect(@item_address.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
+        expect(@item_address.errors.full_messages).to include('Phone number is too long (maximum is 11 characters)')
       end
       it 'phone_numberは英数混合では登録できないこと' do
         @item_address.phone_number = 'a1'
         @item_address.valid?
-        expect(@item_address.errors.full_messages).to include("Phone number cannot be registered with mixed alphanumeric characters")
+        expect(@item_address.errors.full_messages).to include('Phone number cannot be registered with mixed alphanumeric characters')
       end
-
 
       it 'postal_codeが半角のハイフンを含んだ正しい形式でないと保存できないこと' do
         @item_address.postal_code = '1234567'
