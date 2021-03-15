@@ -66,7 +66,7 @@ RSpec.describe ItemAddress, type: :model do
       it 'phone_numberは英数混合では登録できないこと' do
         @item_address.phone_number = 'a1'
         @item_address.valid?
-        expect(@item_address.errors.full_messages).to include("Phone number 11")
+        expect(@item_address.errors.full_messages).to include("Phone number cannot be registered with mixed alphanumeric characters")
       end
 
 
