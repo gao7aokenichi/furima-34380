@@ -5,8 +5,6 @@ class OrdersController < ApplicationController
 
   def index
     @item_address = ItemAddress.new
-    @item = Item.find(params[:item_id])
-    redirect_to root_path if current_user == @item.user || @item.order.present?
   end
 
   def create
@@ -41,6 +39,6 @@ class OrdersController < ApplicationController
   end
 
   def sold_out_item
-    redirect_to root_path if @item.order.present?
-  end
+    redirect_to root_path if current_user == @item.user || @item.order.present?
+    end
 end

@@ -39,10 +39,37 @@ RSpec.describe ItemAddress, type: :model do
         expect(@item_address.errors.full_messages).to include("Municipality can't be blank")
       end
       it 'addressは空だと保存できないこと' do
-        @item_address.municipality = ''
+        @item_address.address = ''
         @item_address.valid?
-        expect(@item_address.errors.full_messages).to include("Municipality can't be blank")
+        expect(@item_address.errors.full_messages).to include("Address can't be blank")
       end
+      it 'user_idは空だと保存できないこと' do
+        @item_address.user_id = ''
+        @item_address.valid?
+        expect(@item_address.errors.full_messages).to include("User can't be blank")
+      end
+      it 'item_idは空だと保存できないこと' do
+        @item_address.item_id = ''
+        @item_address.valid?
+        expect(@item_address.errors.full_messages).to include("Item can't be blank")
+      end
+      it 'phone_numberは空だと保存できないこと' do
+        @item_address.phone_number = ''
+        @item_address.valid?
+        expect(@item_address.errors.full_messages).to include("Phone number can't be blank")
+      end
+      it 'phone_numberは12桁以上では登録できないこと' do
+        @item_address.phone_number = '123456789012'
+        @item_address.valid?
+        expect(@item_address.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
+      end
+      it 'phone_numberは英数混合では登録できないこと' do
+        @item_address.phone_number = 'a1'
+        @item_address.valid?
+        expect(@item_address.errors.full_messages).to include("Phone number 11")
+      end
+
+
       it 'postal_codeが半角のハイフンを含んだ正しい形式でないと保存できないこと' do
         @item_address.postal_code = '1234567'
         @item_address.valid?
